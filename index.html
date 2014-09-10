@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0" />
+        <meta name="keywords" content="Rijkswaterstaat, Vegetatielegger, Stroombaan" />
+        <meta name="description" content="Rijkswaterstaat werkt aan een veilig en natuurlijk rivierengebied. Met de Vegetatielegger houden we de begroeiing in de uiterwaarden op orde." />
+        <title>Vegetatielegger | Rijkswaterstaat - Ministerie van Infrastructuur en Milieu</title>
+        <link rel="stylesheet" href="css/vegetatielegger.css" type="text/css" />
+        <script type="text/javascript" src="../pdokkaart/js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.js"></script>
+        <script type="text/javascript" src="../pdokkaart/api/js/OpenLayers.js"></script>
+        <script type="text/javascript" src="../pdokkaart/api/js/proj4js-compressed.js"></script>
+        <script type="text/javascript" src="../pdokkaart/api/js/pdok-api.js"></script>
+        <script type="text/javascript">
+            var autoReactions = false;
+        </script>
+        <script type="text/javascript" src="js/vegetatielegger.js"></script>
+        <script type="text/javascript">
+            if (document.all && !document.querySelector) { // IE7 or lower
+                alert('U gebruikt Internet Explorer 7.\nDeze browser ondersteunt niet alle functionaliteit van de PDOK Wizard.\nWij raden U aan een nieuwere versie van Internet Explorer of een andere browser zoals Google Chrome, Mozilla FireFox of Apple Safari te gebruiken.');
+            }
+        </script>
+        <script type="text/javascript">
+            Pdok.addcss("../pdokkaart/api/styles/default/style.css");
+            Pdok.addcss("../pdokkaart/api/styles/api.css");
+            Pdok.ApiUrl = '../pdokkaart/api';
+            OpenLayers.ImgPath = '../pdokkaart/api/img/';
+            
+            var config = {
+                "zoom":3,
+                "loc":"170000, 470000",
+                "baselayers" : [{"id":"BRTGRIJSTIJDELIJK","visible":true}],
+                //"baselayers" : [{"id":"OPENBASISKAART","visible":true}],
+                "overlays": [
+                    {"id":"rwsvl_basisgroep","visible":true},
+                    {"id":"rwsvl_perc","visible":true},
+                    {"id":"rwsvl_boomheg","visible":true}
+                ],
+                "layersdef" : "js/vegetatielegger_layers.js",
+                "shownavigation": true,
+                "showlayerswitcher": false,
+                "showzoom": true,
+                "showscaleline": true,
+                "showmouseposition": true,
+		"geocoder": {div: 'pdokGeocoder'}
+            };
+            function createPDOKKaart(){
+                var api = new Pdok.Api(config);
+                return api;
+            }
+            var api; 
+            Pdok.ready( function(){
+                api = createPDOKKaart();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="map" class="fullscreen">
+            <div id="right">
+                <div id="search_box" class="">
+                    <h3><a href="#" title="Klap de 'Zoek op locatie' box open/dicht">Zoek op locatie</a></h3>
+                    <a href="#" title="Klap de 'Zoek op locatie' box open/dicht" class="closeButton">[^]</a>
+                    <div id="pdokGeocoder"></div>
+                </div>
+                <div id="all_reactions_box" class="closed hidden">
+                    <h3><a href="#" title="Klap de 'Alle correcties' box open/dicht">Alle correcties</a></h3>
+                    <a href="#" title="Klap de 'Alle correcties' box open/dicht" class="closeButton">[^]</a>
+                    <div>
+                        <div><label><input type="checkbox" name="layers" value="reacties" /> Toon alle correcties op de kaart</label></div>
+                    </div>
+                </div>
+                <div id="control_box" class="closed">
+                    <h3><a href="#" title="Klap de 'Vereenvoudig de weergave' box open/dicht">Vereenvoudig de weergave</a></h3>
+                    <a href="#" title="Klap de 'Vereenvoudig de weergave' box open/dicht" class="closeButton">[^]</a>
+                    <div>
+                        <p>Wat wilt u tonen?</p>
+                        <div><label><input type="checkbox" name="layers" checked="checked" value="rwsvl_boomheg" /> Bomen en heggen</label></div>
+                        <div><label><input type="checkbox" name="layers" checked="checked" value="rwsvl_perc" /> Perceelgrenzen</label></div>
+                    </div>
+                </div>
+                <div id="legenda" class="closed">
+                    <h3><a href="#" title="Klap de legenda open/dicht">Legenda</a><!--<a href="#" title="Bekijk meer informatie over de legenda" class="helpButton">?</a>--></h3>
+                    <a href="#" title="Klap de legenda open/dicht" class="closeButton">[^]</a>
+                    <div class="container title">
+                        <div class="center"><a href="http://www.vegetatielegger.nl/uitleg/wat-zie-ik-op-de-kaart/vegetatie-op-de-kaart" title="Uitleg over de verschillende soorten vegetatie (Opent in een nieuw venster)">Vegetatie</a></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/boom.png" alt="Boom" /></div>
+                        <div class="center">Boom</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/heg.png" alt="Heg" /></div>
+                        <div class="center">Heg</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container title">
+                        <div class="left">
+                            <a href="http://www.vegetatielegger.nl/uitleg/wat-zie-ik-op-de-kaart/stroombaan" title="Krijg informatie over de weergave van de stroombaan (Opent in een nieuw venster)">Binnen</a>/
+                            <a href="http://www.vegetatielegger.nl/uitleg/wat-zie-ik-op-de-kaart/stroombaan" title="Krijg informatie over de weergave van de stroombaan (Opent in een nieuw venster)">Buiten stroombaan</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_gras_akker2.png" alt="Gras/akker binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_gras_akker.png" alt="Gras/akker buiten stroombaan" /></div>
+                        <div class="center">Gras en akker</div>
+                        
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_riet_ruigte2.png" alt="Riet/ruigte binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_riet_ruigte.png" alt="Riet/ruigte buiten stroombaan" /></div>
+                        <div class="center">Riet en ruigte</div>
+
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_bos2.png" alt="Bos binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_bos.png" alt="Bos buiten stroombaan" /></div>
+                        <div class="center">Bos</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_struweel2.png" alt="Struweel binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_struweel.png" alt="Struweel buiten stroombaan" /></div>
+                        <div class="center">Struweel</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_mengklasse90.png" alt="Mengklasse 90/10 binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_mengklasse90.png" alt="Mengklasse 90/10 buiten stroombaan" /></div>
+                        <div class="center">Mengklasse 90/10</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_mengklasse70.png" alt="Mengklasse 70/30 binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_mengklasse70.png" alt="Mengklasse 70/30 buiten stroombaan" /></div>
+                        <div class="center">Mengklasse 70/30</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/binnen_mengklasse50.png" alt="Mengklasse 50/50 binnen stroombaan" /></div>
+                        <div class="center"><img src="images/legenda/buiten_mengklasse50.png" alt="Mengklasse 50/50 buiten stroombaan" /></div>
+                        <div class="center">Mengklasse 50/50</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container title">
+                        <div class="center"><a href="http://www.vegetatielegger.nl/uitleg/wat-zie-ik-op-de-kaart/overige-elementen" title="Krijg informatie over de overige elementen op de kaart (Opent in een nieuw venster)">Overig</a></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/verhard_terrein.png" alt="Bebouwd of verhard terrein" /></div>
+                        <div class="center">Bebouwd of verhard terrein</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/water.png" alt="Water" /></div>
+                        <div class="center">Water</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/perceelgrenzen.png" alt="Perceelgrenzen" /></div>
+                        <div class="center">Perceelgrenzen</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/vrijstelling_vergunningplicht.png" alt="Vrijgestelde gebieden" /></div>
+                        <div class="center">Vrijstelling vergunningplicht</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/grens_vegetatiebeheer.png" alt="Grens Vegetatielegger" /></div>
+                        <div class="center">Grens Vegetatiebeheer</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/topografie.png" alt="Topografie" /></div>
+                        <div class="center">Topografie</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="container">
+                        <div class="left"><img src="images/legenda/rivierkilometer.png" alt="Rivierkilometer" /></div>
+                        <div class="center">Rivierkilometer</div>
+                        <div class="clear"></div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
