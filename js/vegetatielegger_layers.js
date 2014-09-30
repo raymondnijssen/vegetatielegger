@@ -54,8 +54,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_basisgroep: {
         layertype: 'WMS',
         name: 'Basisgroep',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_vegvlak,rwsvl_vvgw,rwsvl_bhg,rwsvl_rivkm',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'BG',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -66,8 +66,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_boomheg: {
         layertype: 'WMS',
         name: 'rwsvl_boomheg',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_boom,rwsvl_heg',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_bomen,rwsvl_heggen',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -78,8 +78,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_boom: {
         layertype: 'WMS',
         name: 'Boom 6000',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_boom',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_bomen',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -89,8 +89,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_heg: {
         layertype: 'WMS',
         name: 'Heg 6000 - 12000',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_heg',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_heggen',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -100,8 +100,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_rivkm: {
         layertype: 'WMS',
         name: 'Rivierkilometer',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_rivkm',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_kmmarkeringen',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -112,8 +112,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_bhg: {
         layertype: 'WMS',
         name: 'Beheergrens 1500 - 12000',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_bhg',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_begrenzing',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -123,8 +123,8 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_vvgw: {
         layertype: 'WMS',
         name: 'Vrijstelling vergunningplicht gebruik waterstaatswerken',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_vvgw',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_vrijstelgeb',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -134,7 +134,7 @@ Pdok.Api.prototype.defaultLayers = {
     rwsvl_vegvlak: {
         layertype: 'WMS',
         name: 'Vegetatie-vlakken',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
         layers: 'rwsvl_vegvlak',
         transparent: 'true',
         format: 'image/png',
@@ -144,9 +144,9 @@ Pdok.Api.prototype.defaultLayers = {
     },
     rwsvl_perc: {
         layertype: 'WMS',
-        name: 'rwsvl_perc',
-        url: 'http://test.intranet.rijkswaterstaat.nl/services/geoservices-update/rws_vegetatielegger?',
-        layers: 'rwsvl_perc',
+        name: 'Kadastrale percelen',
+        url: 'http://intranet.rijkswaterstaat.nl/services/geoservices/rws_vegetatielegger?',
+        layers: 'rwsvl_kadaster',
         transparent: 'true',
         format: 'image/png',
         visibility: true,
@@ -155,3 +155,4 @@ Pdok.Api.prototype.defaultLayers = {
         singleTile: true
     }
 };
+
