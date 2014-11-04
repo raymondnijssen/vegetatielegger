@@ -7,6 +7,14 @@ body {
 a {
     outline: 0;
 }
+.fullscreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+
+}
 #pdoksearchresults {
     padding: 1em;
 }
