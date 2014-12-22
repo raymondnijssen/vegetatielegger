@@ -9,12 +9,10 @@
         <meta name="description" content="Rijkswaterstaat werkt aan een veilig en natuurlijk rivierengebied. Met de Vegetatielegger houden we de begroeiing in de uiterwaarden op orde." />
         <title>Vegetatielegger | Rijkswaterstaat - Ministerie van Infrastructuur en Milieu</title>
         <link rel="stylesheet" href="css/vegetatielegger.css" type="text/css" />
-        <!-- ugly fix voor ie8 bug that caused to do 1 extra reload -->
-          <script type="text/javascript" src="../pdokkaart/api/js/pdok-markers.js"></script>
-        <!-- /ugly fix voor ie8 bug -->
         <script type="text/javascript" src="../pdokkaart/js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.validate.js"></script>
         <script type="text/javascript" src="../pdokkaart/api/js/OpenLayers.js"></script>
+        <script type="text/javascript" src="../pdokkaart/api/js/geozetlib.js"></script>
         <script type="text/javascript" src="../pdokkaart/api/js/proj4js-compressed.js"></script>
         <script type="text/javascript" src="../pdokkaart/api/js/pdok-api.js"></script>
         <script type="text/javascript">
@@ -26,6 +24,8 @@
                 alert('U gebruikt Internet Explorer 7.\nDeze browser ondersteunt niet alle functionaliteit van de PDOK Wizard.\nWij raden U aan een nieuwere versie van Internet Explorer of een andere browser zoals Google Chrome, Mozilla FireFox of Apple Safari te gebruiken.');
             }
         </script>
+        <!-- vegetatielegger config -->
+        <script type="text/javascript" src="js/vegetatielegger_layers.js"></script>
         <script type="text/javascript">
             Pdok.addcss("../pdokkaart/api/styles/default/style.css");
             Pdok.addcss("../pdokkaart/api/styles/api.css");
@@ -36,19 +36,17 @@
                 "zoom":3,
                 "loc":"170000, 470000",
                 "baselayers" : [{"id":"BRTGRIJSTIJDELIJK","visible":true}],
-                //"baselayers" : [{"id":"OPENBASISKAART","visible":true}],
                 "overlays": [
                     {"id":"rwsvl_basisgroep","visible":true},
                     {"id":"rwsvl_perc","visible":true},
                     {"id":"rwsvl_boomheg","visible":true}
                 ],
-                "layersdef" : "js/vegetatielegger_layers.js",
                 "shownavigation": true,
                 "showlayerswitcher": false,
                 "showzoom": true,
                 "showscaleline": true,
                 "showmouseposition": true,
-		"geocoder": {div: 'pdokGeocoder'}
+                "geocoder": {div: 'pdokGeocoder'}
             };
             function createPDOKKaart(){
                 var api = new Pdok.Api(config);
